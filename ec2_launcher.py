@@ -36,8 +36,6 @@ def autoscaler():
         if not files and not instances:
             return
 
-        open(os.path.join(settings.INSTANCE_DIRECTORY, None), 'a').close()
-
         needed_instances = (len(files) // REQ_TO_INSTANCE_RATIO) + 1
         if needed_instances > len(instances):
             for i in range(len(instances), needed_instances):
