@@ -46,7 +46,7 @@ def handle():
 
         message = response['Messages'][0]
         receipt_handle = message['ReceiptHandle']
-        attrs = message['MessageAttributes']
+        attrs = {k: v['StringValue'] for k, v in message['MessageAttributes'].items()}
         print(f'Received message has attrs: {attrs}')
 
         image = base64.b64decode(message['Body'])  # binary data
