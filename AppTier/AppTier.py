@@ -42,6 +42,7 @@ def handle():
         )
         if 'Messages' not in response:
             time.sleep(5)
+            continue
 
         message = response['Messages'][0]
         receipt_handle = message['ReceiptHandle']
