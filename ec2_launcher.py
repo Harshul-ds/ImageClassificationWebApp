@@ -12,7 +12,9 @@ SCALING_POLL_INTERVAL = 60  # seconds
 
 
 def launch_command():
-    return """#!/bin/bash python3 /home/ubuntu/ImageClassificationWebApp/AppTier/AppTier.py"""
+    return """#!/bin/bash
+    export PYTHONPATH=/home/ubuntu; 
+    python3 /home/ubuntu/ImageClassificationWebApp/AppTier/AppTier.py;"""
 
 
 def launch_instance(name='app-tier-instance-0', itype='t2.micro'):
