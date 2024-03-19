@@ -26,6 +26,10 @@ def handle_image():
     if 'inputFile' not in request.files:
         return 'No File Provided', 400
 
+    if not os.path.exists(settings.TRAFFIC_DIRECTORY):
+        os.mkdir(settings.TRAFFIC_DIRECTORY)
+
+
     image_file = request.files['inputFile']
 
     # Save the file temporarily
@@ -34,6 +38,8 @@ def handle_image():
     
     # Generate a unique ID for this request, could use filename or a combination of filename and timestamp
     request_id = str(uuid.uuid4())
+
+    open(os.path.join(settings.TRAFFIC_DIRECTORY, request_id), 'a').close()
 
     # Send the request to the request queue with filename and request_id
     response = SQS.send_message(
