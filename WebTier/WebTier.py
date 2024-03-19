@@ -29,7 +29,6 @@ def handle_image():
     if not os.path.exists(settings.TRAFFIC_DIRECTORY):
         os.mkdir(settings.TRAFFIC_DIRECTORY)
 
-
     image_file = request.files['inputFile']
 
     # Save the file temporarily
