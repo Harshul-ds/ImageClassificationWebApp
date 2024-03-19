@@ -44,6 +44,7 @@ def autoscaler():
             for i in range(len(instances), needed_instances):
                 instance = launch_instance(name=f'app-tier-instance-{i}')
                 open(os.path.join(settings.INSTANCE_DIRECTORY, instance['Instances'][0]['InstanceId']), 'a').close()
+                print(f'Creating Instance:\n{instance}')
 
         elif needed_instances < len(instances):
             for i in range(len(instances) - 1, needed_instances - 1, -1):
@@ -53,6 +54,7 @@ def autoscaler():
                 EC2.terminate_instances(
                     InstanceIds=[instance_id],
                 )
+                print(f'Terminating Instance:\n{instance}')
                 if os.path.isfile(os.path.join(settings.INSTANCE_DIRECTORY, instance_id)):
                     os.remove(os.path.join(settings.INSTANCE_DIRECTORY, instance_id))
 
