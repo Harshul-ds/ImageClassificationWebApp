@@ -83,9 +83,6 @@ def handle():
             ReceiptHandle=receipt_handle
         )
 
-        if os.path.isfile(os.path.join(settings.TRAFFIC_DIRECTORY, attrs['request_id'])):
-            os.remove(os.path.join(settings.TRAFFIC_DIRECTORY, attrs['request_id']))
-
 
 if __name__ == '__main__':
     handle()
