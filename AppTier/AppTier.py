@@ -43,7 +43,7 @@ def handle():
             WaitTimeSeconds=0
         )
         if 'Messages' not in response:
-            time.sleep(5)
+            time.sleep(2)
             continue
 
         message = response['Messages'][0]
