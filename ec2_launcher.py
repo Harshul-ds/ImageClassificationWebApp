@@ -12,7 +12,7 @@ SCALING_POLL_INTERVAL = 60  # seconds
 
 
 def launch_command():
-    return """#!/bin/bash python3 ImageClassificationWebApp/AppTier/AppTier.py"""
+    return """#!/bin/bash python3 /home/ubuntu/ImageClassificationWebApp/AppTier/AppTier.py"""
 
 
 def launch_instance(name='app-tier-instance-0', itype='t2.micro'):
@@ -53,7 +53,7 @@ def autoscaler():
         if not files:
             needed_instances = 0
         else:
-            needed_instances = (len(files) // REQ_TO_INSTANCE_RATIO) + 1
+            needed_instances = min(1, len(files) // REQ_TO_INSTANCE_RATIO)
 
         if needed_instances > len(instances) and len(instances) < MAX_INSTANCES:
             for i in range(len(instances), needed_instances):
