@@ -47,15 +47,15 @@ def handle_image():
         MessageAttributes={
             'request_id': {
                 'StringValue': request_id,
-                'DataType': 'string'
+                'DataType': 'String'
             },
             'timestamp': {
                 'StringValue': datetime.datetime.now().strftime('"%Y-%m-%d %H:%M:%S"'),
-                'DataType': 'string'
+                'DataType': 'String'
             },
             'filename': {
                 'StringValue': image_file.filename,
-                'DataType': 'string'
+                'DataType': 'String'
             }
         },
     )
@@ -68,7 +68,7 @@ def handle_image():
             QueueUrl=settings.RESP_QUEUE_URL,
             MaxNumberOfMessages=1,
             WaitTimeSeconds=0,
-            AttributeNames=['All']
+            MessageAttributeNames=['All']
         )
         # Check if a message was received
         if 'Messages' in resp:

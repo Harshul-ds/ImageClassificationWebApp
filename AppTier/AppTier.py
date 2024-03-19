@@ -2,6 +2,7 @@ import base64
 import csv
 import logging
 import os
+import time
 
 import boto3
 from ImageClassificationWebApp import settings
@@ -35,9 +36,13 @@ def handle():
         response = SQS.receive_message(
             QueueUrl=settings.REQ_QUEUE_URL,
             AttributeNames=['All'],
+            MessageAttributeNames=['All'],
             MaxNumberOfMessages=1,
             WaitTimeSeconds=0
         )
+        if 'Messages' not in response:
+            time.sleep(5)
+
         message = response['Messages'][0]
         receipt_handle = message['ReceiptHandle']
         attrs = message['MessageAttributes']
