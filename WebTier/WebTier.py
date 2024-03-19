@@ -97,7 +97,7 @@ def handle_image():
 
         # No message for this request yet, continue polling
         else:
-            time.sleep(5)  # Sleep for a short period to avoid hitting rate limits
+            time.sleep(2)  # Sleep for a short period to avoid hitting rate limits
 
     # If the loop exits without returning, something went wrong
     return "Error processing request", 500
