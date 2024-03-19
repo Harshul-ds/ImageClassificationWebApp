@@ -1,10 +1,14 @@
 import os
+import time
+
 import boto3
 
 import settings
 
 EC2 = boto3.client('ec2', region_name='us-east-1')
-REQ_TO_INSTANCE_RATIO = 50  # 1 instance per 50 requests
+REQ_TO_INSTANCE_RATIO = 10
+MAX_INSTANCES = 20
+SCALING_POLL_INTERVAL = 60  # seconds
 
 
 def launch_command():
@@ -39,6 +43,8 @@ def autoscaler():
         os.mkdir(settings.INSTANCE_DIRECTORY)
 
     while True:
+        time.sleep(SCALING_POLL_INTERVAL)
+
         files = os.listdir(settings.TRAFFIC_DIRECTORY)
         instances = os.listdir(settings.INSTANCE_DIRECTORY)
         if not files and not instances:
@@ -49,14 +55,14 @@ def autoscaler():
         else:
             needed_instances = (len(files) // REQ_TO_INSTANCE_RATIO) + 1
 
-        if needed_instances > len(instances):
+        if needed_instances > len(instances) and len(instances) < MAX_INSTANCES:
             for i in range(len(instances), needed_instances):
                 instance = launch_instance(name=f'app-tier-instance-{i}')
                 open(os.path.join(settings.INSTANCE_DIRECTORY, instance['Instances'][0]['InstanceId']), 'a').close()
                 print(f'Creating Instance:\n{instance}')
 
         elif needed_instances < len(instances):
-            for i in range(len(instances) - 1, needed_instances - 1, -1):
+            for i in range(len(instances), needed_instances, -1):
                 instance_id = instances.pop()
 
                 EC2.terminate_instances(
