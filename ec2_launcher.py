@@ -37,7 +37,7 @@ def autoscaler():
         files = os.listdir(settings.TRAFFIC_DIRECTORY)
         instances = os.listdir(settings.INSTANCE_DIRECTORY)
         if not files and not instances:
-            return
+            continue
 
         needed_instances = (len(files) // REQ_TO_INSTANCE_RATIO) + 1
         if needed_instances > len(instances):
