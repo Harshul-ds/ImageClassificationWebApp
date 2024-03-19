@@ -28,7 +28,8 @@ def read_lookup_table(csv_file_path):
 
 
 # Load the lookup table at the start, so it's only read once
-lookup_table = read_lookup_table('./dataset/Classification Results on Face Dataset (1000 images).csv')
+lookup_table_path = os.path.join(os.getcwd(), 'dataset/Classification Results on Face Dataset (1000 images).csv')
+lookup_table = read_lookup_table(lookup_table_path)
 
 
 def handle():
