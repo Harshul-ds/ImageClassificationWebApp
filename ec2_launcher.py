@@ -7,6 +7,10 @@ EC2 = boto3.client('ec2', region_name='us-east-1')
 REQ_TO_INSTANCE_RATIO = 50  # 1 instance per 50 requests
 
 
+def launch_command():
+    return """#!/bin/bash python3 ImageClassificationWebApp/AppTier/AppTier.py"""
+
+
 def launch_instance(name='app-tier-instance-0', itype='t2.micro'):
     return EC2.run_instances(
         InstanceType=itype,
@@ -15,6 +19,7 @@ def launch_instance(name='app-tier-instance-0', itype='t2.micro'):
         KeyName='EC2key',
         ImageId="ami-0679b66fdb562f324",
         SecurityGroupIds=['sg-0e5641dcf17dcae9a'],
+        UserData=launch_command(),
         TagSpecifications=[
             {
                 'ResourceType': 'instance',
@@ -48,13 +53,12 @@ def autoscaler():
 
         elif needed_instances < len(instances):
             for i in range(len(instances) - 1, needed_instances - 1, -1):
-                instance = instances.pop()
-                instance_id = instance['Instances'][0]['InstanceId']
+                instance_id = instances.pop()
 
                 EC2.terminate_instances(
                     InstanceIds=[instance_id],
                 )
-                print(f'Terminating Instance:\n{instance}')
+                print(f'Terminating Instance:\n{instance_id}')
                 if os.path.isfile(os.path.join(settings.INSTANCE_DIRECTORY, instance_id)):
                     os.remove(os.path.join(settings.INSTANCE_DIRECTORY, instance_id))
 
