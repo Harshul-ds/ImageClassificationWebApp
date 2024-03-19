@@ -1,4 +1,6 @@
 import base64
+import csv
+import logging
 import os
 
 import boto3
@@ -6,6 +8,26 @@ from ImageClassificationWebApp import settings
 
 SQS = boto3.client('sqs', region_name='us-east-1')
 S3 = boto3.client('s3')
+
+_LOG = logging.getLogger(__name__)
+
+
+def read_lookup_table(csv_file_path):
+    try:
+        lookup_table = {}
+        with open(csv_file_path, mode='r') as infile:
+            reader = csv.DictReader(infile)  # Assuming the CSV has headers
+            for row in reader:
+                # Assuming the CSV columns are named 'Image' and 'Results'
+                lookup_table[row['Image']] = row['Results']
+        return lookup_table
+    except Exception as e:
+        _LOG.error(f"Failed to read lookup table: {e}")
+        return {}
+
+
+# Load the lookup table at the start, so it's only read once
+lookup_table = read_lookup_table('./dataset/Classification Results on Face Dataset (1000 images).csv')
 
 
 def handle():
@@ -25,13 +47,12 @@ def handle():
         S3.put_object(
             Body=image,
             Bucket=settings.S3_IN_BUCKET,
-            Key=f"{attrs['request_id']}_{attrs['filename']}.jpg",
+            Key=f"{attrs['request_id']}_{attrs['filename']}",
         )
-        # TODO: Handle model inference logic. Lookup or whatever
-        data = {}  # get the result
-        result = f"{data['filename']}:{data['classification_result']}"
 
-        # if result not correct: delete message or keep? how to handle? or simply ignore?
+        fname = attrs['filename'].split('.')[0]
+        classification_result = lookup_table.get(fname, 'Not Found')
+        result = f"{fname}:{classification_result}"
 
         SQS.send_message(
             QueueUrl=settings.RESP_QUEUE_URL,
@@ -46,7 +67,7 @@ def handle():
         S3.put_object(
             Body=result,
             Bucket=settings.S3_OUT_BUCKET,
-            Key=f"{attrs['request_id']}_{attrs['filename']}.txt"
+            Key=f"{attrs['request_id']}_{fname}.txt"
         )
         # Delete received message from queue
         SQS.delete_message(
