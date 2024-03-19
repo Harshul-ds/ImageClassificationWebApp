@@ -44,7 +44,11 @@ def autoscaler():
         if not files and not instances:
             continue
 
-        needed_instances = (len(files) // REQ_TO_INSTANCE_RATIO) + 1
+        if not files:
+            needed_instances = 0
+        else:
+            needed_instances = (len(files) // REQ_TO_INSTANCE_RATIO) + 1
+
         if needed_instances > len(instances):
             for i in range(len(instances), needed_instances):
                 instance = launch_instance(name=f'app-tier-instance-{i}')
