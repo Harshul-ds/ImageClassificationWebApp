@@ -30,6 +30,9 @@ def launch_instance(name='app-tier-instance-0', itype='t2.micro'):
 
 
 def autoscaler():
+    if not os.path.exists(settings.INSTANCE_DIRECTORY):
+        os.mkdir(settings.INSTANCE_DIRECTORY)
+
     while True:
         files = os.listdir(settings.TRAFFIC_DIRECTORY)
         instances = os.listdir(settings.INSTANCE_DIRECTORY)
