@@ -3,7 +3,7 @@ import os
 import boto3
 from ImageClassificationWebApp import settings
 
-EC2 = boto3.client('ec2')
+EC2 = boto3.client('ec2', region_name='us-east-1')
 instances = []
 REQ_TO_INSTANCE_RATIO = 50  # 1 instance per 50 requests
 
