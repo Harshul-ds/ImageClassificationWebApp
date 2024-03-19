@@ -20,7 +20,7 @@ def launch_instance(name='app-tier-instance-0', itype='t2.micro'):
                 'ResourceType': 'instance',
                 'Tags': [
                     {
-                        'Key': 'name',
+                        'Key': 'Name',
                         'Value': name
                     },
                 ]
