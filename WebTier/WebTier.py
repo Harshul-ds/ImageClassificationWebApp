@@ -73,7 +73,7 @@ def handle_image():
         # Check if a message was received
         if 'Messages' in resp:
             message = resp['Messages'][0]
-            attrs = message['MessageAttributes']
+            attrs = {k: v['StringValue'] for k, v in message['MessageAttributes'].items()}
             body = message['Body']
 
             # Check if the response is for the current request
