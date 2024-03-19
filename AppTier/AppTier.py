@@ -66,7 +66,7 @@ def handle():
             MessageAttributes={
                 'request_id': {
                     'StringValue': attrs['request_id'],
-                    'DataType': 'string'
+                    'DataType': 'String'
                 },
             },
         )
