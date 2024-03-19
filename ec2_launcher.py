@@ -14,6 +14,7 @@ def launch_instance(name='app-tier-instance-0', itype='t2.micro'):
         MaxCount=1,
         KeyName='EC2key',
         ImageId="ami-0dec28adf912e7a8a",
+        SecurityGroupIds=['sg-0e5641dcf17dcae9a'],
         TagSpecifications=[
             {
                 'ResourceType': 'instance',
