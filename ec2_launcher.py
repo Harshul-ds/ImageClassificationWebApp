@@ -14,6 +14,7 @@ SCALING_POLL_INTERVAL = 60  # seconds
 def launch_command():
     return """#!/bin/bash
     export PYTHONPATH=/home/ubuntu/;
+    pip3 install boto3;
     python3 /home/ubuntu/ImageClassificationWebApp/AppTier/AppTier.py;"""
 
 

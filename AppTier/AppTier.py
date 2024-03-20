@@ -1,4 +1,5 @@
 import base64
+import configparser
 import csv
 import logging
 import os
@@ -7,8 +8,12 @@ import time
 import boto3
 from ImageClassificationWebApp import settings
 
-SQS = boto3.client('sqs', region_name='us-east-1')
-S3 = boto3.client('s3')
+session = boto3.Session(
+    aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY)
+
+SQS = session.client('sqs', region_name='us-east-1')
+S3 = session.client('s3')
 
 _LOG = logging.getLogger(__name__)
 
