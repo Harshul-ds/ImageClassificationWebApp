@@ -59,8 +59,7 @@ def handle():
         )
 
         fname = attrs['filename'].split('.')[0]
-        classification_result = lookup_table.get(fname, 'Not Found')
-        result = f"{fname}:{classification_result}"
+        result = lookup_table.get(fname, 'Not Found')
 
         SQS.send_message(
             QueueUrl=settings.RESP_QUEUE_URL,
