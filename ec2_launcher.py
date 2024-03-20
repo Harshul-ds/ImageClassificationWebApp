@@ -13,7 +13,6 @@ SCALING_POLL_INTERVAL = 60  # seconds
 
 def launch_command():
     return """#!/bin/bash
-    export PYTHONPATH=/home/ubuntu/ImageClassificationWebApp; 
     python3 /home/ubuntu/ImageClassificationWebApp/AppTier/AppTier.py;"""
 
 
@@ -23,7 +22,7 @@ def launch_instance(name='app-tier-instance-0', itype='t2.micro'):
         MinCount=1,
         MaxCount=1,
         KeyName='EC2key',
-        ImageId="ami-0e3114375b50ed186",
+        ImageId=os.getenv('AMI_INSTANCE', 'ami-xxxx'),
         SecurityGroupIds=['sg-0e5641dcf17dcae9a'],
         UserData=launch_command(),
         TagSpecifications=[
