@@ -55,7 +55,7 @@ def autoscaler():
         if not files:
             needed_instances = 0
         else:
-            needed_instances = min(1, len(files) // REQ_TO_INSTANCE_RATIO)
+            needed_instances = max(1, len(files) // REQ_TO_INSTANCE_RATIO)
 
         if needed_instances > len(instances) and len(instances) < MAX_INSTANCES:
             for i in range(len(instances), needed_instances):
