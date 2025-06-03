@@ -1,44 +1,74 @@
-# ImageClassificationWebApp
-### **README for Image Classification Web App**  
+# Image Classification Web App
 
-# **Image Classification Web App**  
+A cloud-native web application for real-time image classification using deep learning models. This application provides a user-friendly interface for image analysis and classification, deployed on AWS EC2 infrastructure.
 
-This project is a web-based application for image classification, leveraging deep learning models to identify and categorize images. The app is designed for ease of use, offering real-time classification results through a simple and intuitive interface.  
+## Key Features
 
-## **Features**  
-- **Deep Learning Integration**: Utilizes pre-trained deep learning models to classify uploaded images accurately.  
-- **Web-Based UI**: A user-friendly interface built with Flask, allowing seamless interaction with the model.  
-- **Scalable Deployment**: Designed for deployment on local servers or cloud platforms.  
-- **Real-Time Results**: Processes and displays classification outputs immediately after an image is uploaded.  
+1. **Real-time Image Classification**
+   - Instant predictions using pre-trained deep learning models
+   - Support for multiple image formats
+   - Batch processing capabilities
 
-## **Technologies Used**  
-- **Backend**: Python, Flask  
-- **Deep Learning**: TensorFlow/Keras  
-- **Frontend**: HTML, CSS  
-- **Deployment**: Local server or cloud-ready configuration  
+2. **Cloud Deployment**
+   - Deployed on AWS EC2
+   - Auto-scaling capabilities
+   - Secure access control
 
-## **Getting Started**  
-### **Installation**  
-1. Clone this repository:  
-   ```bash  
-   git clone https://github.com/Harshul-ds/ImageClassificationWebApp  
-   ```  
-2. Navigate to the project directory:  
-   ```bash  
-   cd ImageClassificationWebApp  
-   ```  
-3. Install the required dependencies:  
-   ```bash  
-   pip install -r requirements.txt  
-   ```  
+3. **Web Interface**
+   - Modern, responsive UI
+   - Drag-and-drop image upload
+   - Batch processing interface
+   - Results visualization
 
-### **Running the App**  
-1. Start the Flask server:  
-   ```bash  
-   python app.py  
-   ```  
-2. Open your browser and go to `http://127.0.0.1:5000/`.  
-3. Upload an image to see the classification results.  
+## Technical Stack
+
+1. **Frontend**
+   - HTML5/CSS3
+   - JavaScript
+   - Bootstrap for responsive design
+
+2. **Backend**
+   - Python Flask
+   - TensorFlow/Keras
+   - Pre-trained deep learning models
+
+3. **Infrastructure**
+   - AWS EC2
+   - Security Groups
+   - IAM Roles
+   - Auto-scaling configuration  
+
+## Deployment
+
+1. **Local Development**
+   ```bash
+   # Clone the repository
+   git clone https://github.com/Harshul-ds/ImageClassificationWebApp
+   cd ImageClassificationWebApp
+
+   # Create and activate virtual environment
+   python -m venv venv
+   source venv/bin/activate
+
+   # Install dependencies
+   pip install -r requirements.txt
+
+   # Run the application
+   python app.py
+   ```
+
+2. **Cloud Deployment**
+   - Deploy on AWS EC2
+   - Configure security groups
+   - Set up auto-scaling
+   - Enable monitoring and logging
+
+## Usage
+
+1. Access the web interface
+2. Upload images through the drag-and-drop interface
+3. View real-time classification results
+4. Process multiple images in batch mode  
 
 ## **Future Enhancements**  
 - Integrate additional deep learning models for improved accuracy.  
