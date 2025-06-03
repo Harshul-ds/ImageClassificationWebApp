@@ -5,7 +5,44 @@
 
 ![Image Classification Pipeline](https://raw.githubusercontent.com/Harshul-ds/ImageClassificationWebApp/main/assets/classification_pipeline.png)
 
-A scalable web platform for real-time image classification using deep learning models. This application provides an intuitive interface for image analysis, deployed on AWS EC2 with auto-scaling capabilities.
+A production-grade image classification platform that transforms raw images into actionable insights using state-of-the-art deep learning models. Deployed on AWS EC2 with auto-scaling capabilities, this system provides real-time image analysis through a modern, responsive web interface.
+
+## Key Features
+
+1. **Advanced Image Processing**
+   - Real-time image classification
+   - Batch processing capabilities
+   - Multi-format support
+   - Image augmentation
+
+2. **Cloud-Native Architecture**
+   - Auto-scaling EC2 deployment
+   - Secure access control
+   - Monitoring and logging
+   - Backup and recovery
+
+3. **Performance Optimizations**
+   - Model quantization
+   - GPU acceleration
+   - Caching mechanisms
+   - Load balancing
+
+4. **User Experience**
+   - Drag-and-drop interface
+   - Batch processing
+   - Results visualization
+   - API integration
+
+## Technical Details
+
+- Built with Python 3.8+
+- Uses TensorFlow/Keras for model inference
+- Implements Flask for web server
+- Follows RESTful API design
+- Includes comprehensive error handling
+- Supports multiple image formats
+- Implements caching for performance
+- Secure authentication and authorization
 
 ## Key Features
 
