@@ -1,6 +1,11 @@
-# Image Classification Web App
+# Cloud-Native Image Intelligence Platform 🌐📸
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![AWS](https://img.shields.io/badge/AWS-EC2-orange.svg)](https://aws.amazon.com/ec2/)
 
-A cloud-native web application for real-time image classification using deep learning models. This application provides a user-friendly interface for image analysis and classification, deployed on AWS EC2 infrastructure.
+![Image Classification Pipeline](https://raw.githubusercontent.com/Harshul-ds/ImageClassificationWebApp/main/assets/classification_pipeline.png)
+
+A scalable web platform for real-time image classification using deep learning models. This application provides an intuitive interface for image analysis, deployed on AWS EC2 with auto-scaling capabilities.
 
 ## Key Features
 
